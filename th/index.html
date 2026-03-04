@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coupocke | แอพจัดการคูปองอัจฉริยะ - ไม่ลืมใช้คูปองอีกต่อไป</title>
+    <meta name="description"
+        content="Get automatic notifications just by passing near a store! Easy registration with AI camera. Never regret forgetting a coupon at the register again.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@500;800&family=Noto+Sans+JP:wght@400;700&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary-blue: #007AFF;
+            --secondary-blue: #58A6FF;
+            --bg-light: #FBFBFD;
+            --text-dark: #1D1D1F;
+            --text-gray: #86868B;
+            --glass: rgba(255, 255, 255, 0.7);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', 'Noto Sans JP', sans-serif;
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Outfit', 'Noto Sans JP', sans-serif;
+            font-weight: 800;
+        }
+
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* --- Header --- */
+        header {
+            height: 80px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: var(--glass);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            color: var(--primary-blue);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            padding: 160px 0 100px;
+            text-align: center;
+            background: radial-gradient(circle at top right, rgba(0, 122, 255, 0.05), transparent),
+                radial-gradient(circle at bottom left, rgba(88, 166, 255, 0.05), transparent);
+        }
+
+        .hero h1 {
+            font-size: clamp(32px, 8vw, 64px);
+            margin-bottom: 24px;
+            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-blue) 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(16px, 4vw, 20px);
+            color: var(--text-gray);
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .cta-button {
+            display: inline-flex;
+            align-items: center;
+            padding: 18px 36px;
+            background-color: var(--text-dark);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 15px 40px rgba(0, 122, 255, 0.2);
+            background-color: #000;
+        }
+
+        .hero-mockup {
+            margin-top: 60px;
+            position: relative;
+        }
+
+        .hero-mockup img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 40px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Features --- */
+        .section-title {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-title h2 {
+            font-size: 36px;
+            margin-bottom: 16px;
+        }
+
+        .features {
+            padding: 100px 0;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: white;
+            padding: 40px;
+            border-radius: 30px;
+            border: 1px solid rgba(0, 0, 0, 0.03);
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        }
+
+        .feature-icon {
+            font-size: 40px;
+            margin-bottom: 24px;
+            display: block;
+        }
+
+        .feature-card h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .feature-card p {
+            color: var(--text-gray);
+        }
+
+        /* --- Steps --- */
+        .steps {
+            padding: 100px 0;
+            background-color: #f2f2f7;
+        }
+
+        .step-list {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            gap: 30px;
+        }
+
+        .step-item {
+            flex: 1;
+            min-width: 250px;
+            text-align: center;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-blue);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 800;
+            margin: 0 auto 24px;
+        }
+
+        /* --- Footer --- */
+        footer {
+            padding: 80px 0 40px;
+            text-align: center;
+            background-color: white;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .footer-links {
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-blue);
+        }
+
+        .copy {
+            font-size: 13px;
+            color: var(--text-gray);
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeUp 0.8s ease forwards;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 40px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="container" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
+            <div class="logo">
+                <span>Coupocke</span>
+            </div>
+                        <div style="display: flex; gap: 15px; align-items: center;">
+                <a href="../index.html"
+                    style="font-size: 14px; color: var(--text-gray); text-decoration: none;">日本語</a>
+                <a href="../en/index.html"
+                    style="font-size: 14px; color: var(--text-gray); text-decoration: none;">English</a>
+                <a href="../tw/index.html"
+                    style="font-size: 14px; color: var(--text-gray); text-decoration: none;">繁體中文</a>
+                <a href="https://apps.apple.com/us/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666"
+                    class="cta-button" style="padding: 10px 20px; font-size: 14px;">ดาวน์โหลดฟรี</a>
+            </div>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container animate">
+            <h1>ไม่ลืมใช้คูปองอีกต่อไป</h1>
+            <p>การแจ้งเตือนอัจฉริยะจะแจ้งคุณโดยอัตโนมัติเมื่อคุณอยู่ใกล้ร้านค้า<br>การจัดการคูปองยุคใหม่ที่ขับเคลื่อนด้วย
+                AI และบริการระบุตำแหน่ง</p>
+            <a href="https://apps.apple.com/us/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666"
+                class="cta-button">ดาวน์โหลดบน App Store</a>
+
+            <div class="hero-mockup">
+                <img src="https://images.unsplash.com/photo-1512428559083-a400a42d4a3a?auto=format&fit=crop&w=1200&q=80"
+                    alt="App interface visualization">
+            </div>
+        </div>
+    </section>
+
+    <section class="features">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>เปลี่ยน "ลืมใช้" ให้เป็นการประหยัดที่ชาญฉลาด</h2>
+                <p>คูปองที่หลับใหลในกระเป๋าเงินของคุณ ภาพถ่ายหน้าจอที่ถูกลืม Coupocke
+                    จะเปลี่ยนสิ่งเหล่านี้ให้เป็นทรัพย์สินที่ใช้งานได้จริง
+                </p>
+            </div>
+
+            <div class="feature-grid">
+                <div class="feature-card animate" style="animation-delay: 0.1s;">
+                    <span class="feature-icon">📡</span>
+                    <h3>การแจ้งเตือนเมื่ออยู่ใกล้ร้าน</h3>
+                    <p>ระบบแจ้งเตือนอัจฉริยะจะตรวจหาโดยอัตโนมัติเมื่อคุณอยู่ใกล้ร้านค้าที่ลงทะเบียนไว้
+                        รับการแจ้งเตือนทันทีก่อนเดินเข้าร้าน ไม่มีทางลืมแน่นอน</p>
+                </div>
+
+                <div class="feature-card animate" style="animation-delay: 0.2s;">
+                    <span class="feature-icon">🤖</span>
+                    <h3>ถ่ายรูปและกรอกข้อมูลอัตโนมัติด้วย AI</h3>
+                    <p>AI (Google Gemini) จะวิเคราะห์ภาพถ่ายของคุณ อ่านชื่อร้าน วันหมดอายุ และส่วนลดได้ทันที
+                        การลงทะเบียนใช้เวลาเพียงไม่กี่วินาที</p>
+                </div>
+
+                <div class="feature-card animate" style="animation-delay: 0.3s;">
+                    <span class="feature-icon">🛡️</span>
+                    <h3>การป้องกันการหมดอายุ</h3>
+                    <p>Coupocke ช่วยดูแลคุณก่อนที่คูปองจะหมดอายุ รับการแจ้งเตือนล่วงหน้าไม่กี่วันหรือในวันที่หมดอายุ
+                        ไม่พลาดดีลดีๆ อีกต่อไป</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="steps">
+        <div class="container">
+            <div class="section-title animate">
+                <h2>ใช้งานง่ายอย่างน่าทึ่ง</h2>
+            </div>
+
+            <div class="step-list">
+                <div class="step-item animate" style="animation-delay: 0.1s;">
+                    <div class="step-number">1</div>
+                    <h3>ถ่ายรูป</h3>
+                    <p>เพียงถ่ายรูปคูปองของคุณ<br>AI จะกรอกข้อมูลให้โดยอัตโนมัติ</p>
+                </div>
+                <div class="step-item animate" style="animation-delay: 0.2s;">
+                    <div class="step-number">2</div>
+                    <h3>เดินเที่ยว</h3>
+                    <p>ออกไปช้อปปิ้งตามปกติ<br>คุณสามารถปิดแอพได้เลย</p>
+                </div>
+                <div class="step-item animate" style="animation-delay: 0.3s;">
+                    <div class="step-number">3</div>
+                    <h3>ประหยัด</h3>
+                    <p>รับการแจ้งเตือนเมื่ออยู่ใกล้ร้าน<br>แสดงคูปองที่หน้าเคาน์เตอร์และรับส่วนลด!</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="hero" style="padding: 100px 0; background: white;">
+        <div class="container animate">
+            <h2>การประหยัดอยู่ในกระเป๋าคุณแล้ว</h2>
+            <p>ไม่ต้องเสียใจที่หน้าแคชเชียร์อีกต่อไป<br>เริ่มต้นประสบการณ์ช้อปปิ้งที่ชาญฉลาดได้ตั้งแต่วันนี้</p>
+            <a href="https://apps.apple.com/us/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666"
+                class="cta-button">ดาวน์โหลดฟรีตอนนี้</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <a href="terms.html">ข้อกำหนดการใช้งาน</a>
+                <a href="privacy.html">นโยบายความเป็นส่วนตัว</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHvAplyKIE3g7wVVItVoWDLAQQEjYJLOumq6FFCWIv70No7A/viewform?usp=header"
+                    target="_blank">ฝ่ายสนับสนุนและคำติชม</a>
+            </div>
+            <p class="copy">&copy; 2026 Coupocke. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Simple intersection observer for fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = 1;
+                    entry.target.classList.add('animate');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate').forEach(el => {
+            el.style.opacity = 0;
+            observer.observe(el);
+        });
+    </script>
+
+</body>
+
+</html>
