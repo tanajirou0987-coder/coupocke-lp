@@ -4,312 +4,361 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coupocke | แอพจัดการคูปองอัจฉริยะ - ไม่ลืมใช้คูปองอีกต่อไป</title>
-    <meta name="description"
-        content="Get automatic notifications just by passing near a store! Easy registration with AI camera. Never regret forgetting a coupon at the register again.">
+    <title>Coupocke | ไม่ลืมใช้คูปองอีกต่อไป</title>
+    <meta name="description" content="แค่เดินผ่านร้าน ก็จะแจ้งเตือนให้อัตโนมัติ! ลงทะเบียนง่าย ๆ แค่ถ่ายรูปด้วย AI ไม่ต้องเสียดายที่ลืมใช้คูปองอีกต่อไป.">
+    <link rel="icon" href="../assets/logo-256.png">
 
-    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Outfit:wght@500;800&family=Noto+Sans+JP:wght@400;700&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&family=Noto+Sans+Thai:wght@400;500;700;900&display=swap" rel="stylesheet">
 
     <style>
         :root {
-            --primary-blue: #007AFF;
-            --secondary-blue: #58A6FF;
-            --bg-light: #FBFBFD;
-            --text-dark: #1D1D1F;
-            --text-gray: #86868B;
-            --glass: rgba(255, 255, 255, 0.7);
+            --orange: #FF8C42;
+            --orange-deep: #FF6B1A;
+            --orange-light: #FFE5D0;
+            --orange-soft: #FFF3E8;
+            --blue: #5BAFEF;
+            --blue-light: #E5F2FF;
+            --yellow: #FFD93D;
+            --yellow-soft: #FFF8DC;
+            --pink: #FF6B8B;
+            --green: #6BCF7F;
+            --bg: #FFFAF3;
+            --text: #2A2A2A;
+            --text-soft: #6B6B6B;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: 'Inter', 'Noto Sans JP', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-dark);
-            line-height: 1.6;
+            font-family: 'Noto Sans Thai', 'Noto Sans JP', sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.7;
             overflow-x: hidden;
+            font-weight: 500;
         }
+        h1, h2, h3 { font-weight: 900; line-height: 1.4; letter-spacing: -0.01em; }
+        a { color: inherit; }
 
-        h1,
-        h2,
-        h3 {
-            font-family: 'Outfit', 'Noto Sans JP', sans-serif;
-            font-weight: 800;
-        }
+        .container { max-width: 1080px; margin: 0 auto; padding: 0 20px; }
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        /* --- Header --- */
         header {
-            height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: var(--glass);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+            height: 72px; display: flex; align-items: center;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            background: rgba(255, 250, 243, 0.92);
+            backdrop-filter: blur(18px);
+            -webkit-backdrop-filter: blur(18px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.04);
         }
-
-        .logo {
-            font-size: 24px;
-            font-weight: 800;
-            color: var(--primary-blue);
-            display: flex;
-            align-items: center;
-            gap: 10px;
+        .header-inner { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        .logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 19px; color: var(--text); text-decoration: none; }
+        .logo img { width: 36px; height: 36px; border-radius: 9px; box-shadow: 0 4px 12px rgba(255, 140, 66, 0.25); }
+        .nav-right { display: flex; align-items: center; gap: 16px; }
+        .lang-link { font-size: 13px; color: var(--text-soft); text-decoration: none; transition: color .2s; font-weight: 700; }
+        .lang-link:hover { color: var(--orange); }
+        .header-cta {
+            background: var(--orange); color: white !important; padding: 10px 18px;
+            border-radius: 100px; font-size: 13px; font-weight: 900;
+            text-decoration: none; transition: transform .2s, box-shadow .2s;
+            box-shadow: 0 4px 12px rgba(255, 140, 66, 0.3);
         }
+        .header-cta:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(255, 140, 66, 0.4); }
 
-        .logo img {
-            width: 32px;
-            height: 32px;
-            border-radius: 8px;
-        }
-
-        /* --- Hero Section --- */
         .hero {
-            padding: 160px 0 100px;
-            text-align: center;
-            background: radial-gradient(circle at top right, rgba(0, 122, 255, 0.05), transparent),
-                radial-gradient(circle at bottom left, rgba(88, 166, 255, 0.05), transparent);
+            padding: 130px 0 90px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(180deg, var(--bg) 0%, var(--orange-soft) 100%);
+        }
+        .blob {
+            position: absolute; border-radius: 50%;
+            filter: blur(70px); z-index: 0; pointer-events: none;
+        }
+        .blob.b1 { width: 380px; height: 380px; background: var(--orange-light); opacity: 0.7; top: -100px; right: -80px; }
+        .blob.b2 { width: 320px; height: 320px; background: var(--blue-light); opacity: 0.8; bottom: -120px; left: -60px; }
+        .blob.b3 { width: 240px; height: 240px; background: var(--yellow-soft); opacity: 0.6; top: 40%; right: 15%; }
+
+        .hero-inner { position: relative; z-index: 1; text-align: center; }
+        .hero-badge {
+            display: inline-flex; align-items: center; gap: 8px;
+            background: white; padding: 7px 16px;
+            border-radius: 100px; font-size: 12px; font-weight: 900;
+            color: var(--orange); margin-bottom: 24px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.06);
+        }
+        .hero-badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--orange); animation: pulse 2s infinite; }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.6; transform: scale(0.85); }
         }
 
         .hero h1 {
-            font-size: clamp(32px, 8vw, 64px);
-            margin-bottom: 24px;
-            background: linear-gradient(135deg, var(--text-dark) 0%, var(--primary-blue) 100%);
-            background-clip: text;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            line-height: 1.1;
+            font-size: clamp(30px, 5.5vw, 50px);
+            margin-bottom: 22px;
         }
-
-        .hero p {
-            font-size: clamp(16px, 4vw, 20px);
-            color: var(--text-gray);
-            max-width: 700px;
-            margin: 0 auto 40px;
-        }
-
-        .cta-button {
-            display: inline-flex;
-            align-items: center;
-            padding: 18px 36px;
-            background-color: var(--text-dark);
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 700;
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .cta-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 15px 40px rgba(0, 122, 255, 0.2);
-            background-color: #000;
-        }
-
-        .hero-mockup {
-            margin-top: 60px;
+        .highlight {
+            color: var(--orange);
             position: relative;
+            display: inline-block;
+        }
+        .highlight::after {
+            content: ''; position: absolute; left: -2px; right: -2px; bottom: 6px;
+            height: 14px; background: var(--yellow); opacity: 0.45;
+            z-index: -1; border-radius: 4px;
         }
 
-        .hero-mockup img {
-            max-width: 100%;
-            height: auto;
-            border-radius: 40px;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+        .hero p.lead {
+            font-size: clamp(15px, 2.4vw, 17px);
+            color: var(--text-soft);
+            max-width: 540px;
+            margin: 0 auto 36px;
+            font-weight: 500;
         }
 
-        /* --- Features --- */
-        .section-title {
-            text-align: center;
-            margin-bottom: 60px;
+        .btn-primary {
+            display: inline-flex; align-items: center; gap: 10px;
+            background: var(--orange); color: white !important;
+            padding: 18px 36px; border-radius: 100px;
+            font-size: 16px; font-weight: 900;
+            text-decoration: none;
+            box-shadow: 0 14px 30px rgba(255, 140, 66, 0.4);
+            transition: transform .2s, box-shadow .2s;
+        }
+        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 18px 40px rgba(255, 140, 66, 0.5); }
+        .btn-primary svg { width: 20px; height: 20px; }
+
+        .hero-meta {
+            margin-top: 18px;
+            font-size: 13px; color: var(--text-soft); font-weight: 700;
+            display: flex; justify-content: center; align-items: center; gap: 6px;
+        }
+        .hero-meta .stars { color: var(--yellow); letter-spacing: 1px; }
+
+        .hero-mockup-wrap {
+            margin-top: 70px; position: relative;
+            display: flex; justify-content: center;
+        }
+        .hero-screenshot {
+            display: block; margin: 0 auto;
+            width: 100%; max-width: 300px;
+            aspect-ratio: 1206 / 2300;
+            object-fit: cover; object-position: top;
+            border-radius: 38px;
+            box-shadow: 0 30px 70px rgba(0, 0, 0, 0.18);
+        }
+        .float-bubble {
+            position: absolute;
+            width: 64px; height: 64px;
+            border-radius: 22px;
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
+            animation: floatUp 4s ease-in-out infinite;
+            z-index: 2;
+        }
+        .float-bubble svg { width: 32px; height: 32px; stroke: white; fill: none; stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+        .float-bubble.f1 { left: 6%; top: 8%; background: linear-gradient(135deg, #FFB347, #FF8C42); }
+        .float-bubble.f2 { right: 6%; top: 26%; animation-delay: 1.2s; background: linear-gradient(135deg, #5BAFEF, #4A9EE0); }
+        .float-bubble.f3 { left: 10%; bottom: 14%; animation-delay: 2.4s; background: linear-gradient(135deg, #FFD93D, #F5C842); }
+        .float-bubble.f4 { right: 12%; bottom: 6%; animation-delay: 0.6s; background: linear-gradient(135deg, #FF6B8B, #FF5577); }
+        @keyframes floatUp {
+            0%, 100% { transform: translateY(0) rotate(-3deg); }
+            50% { transform: translateY(-14px) rotate(3deg); }
         }
 
-        .section-title h2 {
-            font-size: 36px;
-            margin-bottom: 16px;
+        .section-title { text-align: center; margin-bottom: 56px; }
+        .section-title .label {
+            display: inline-block;
+            background: var(--blue-light); color: var(--blue);
+            padding: 6px 16px; border-radius: 100px;
+            font-size: 11px; font-weight: 900; letter-spacing: 0.08em;
+            margin-bottom: 14px;
         }
+        .section-title .label.warm { background: var(--orange-soft); color: var(--orange-deep); }
+        .section-title h2 { font-size: clamp(24px, 4vw, 32px); margin-bottom: 12px; }
+        .section-title p { color: var(--text-soft); font-size: 14px; max-width: 520px; margin: 0 auto; }
 
-        .features {
-            padding: 100px 0;
-        }
-
+        .features { padding: 100px 0 80px; position: relative; }
         .feature-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            display: grid; gap: 24px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
         }
-
         .feature-card {
             background: white;
-            padding: 40px;
-            border-radius: 30px;
+            padding: 32px 26px;
+            border-radius: 22px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
             border: 1px solid rgba(0, 0, 0, 0.03);
-            transition: all 0.3s ease;
+            position: relative; overflow: hidden;
+            transition: transform .25s, box-shadow .25s;
         }
-
-        .feature-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+        .feature-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px rgba(0, 0, 0, 0.08); }
+        .feature-card .icon-box {
+            width: 56px; height: 56px;
+            border-radius: 16px;
+            display: flex; align-items: center; justify-content: center;
+            margin-bottom: 20px;
         }
+        .feature-card.c1 .icon-box { background: linear-gradient(135deg, #FF8C42, #FFB266); box-shadow: 0 8px 20px rgba(255, 140, 66, 0.3); }
+        .feature-card.c2 .icon-box { background: linear-gradient(135deg, #5BAFEF, #8DCEFF); box-shadow: 0 8px 20px rgba(91, 175, 239, 0.3); }
+        .feature-card.c3 .icon-box { background: linear-gradient(135deg, #6BCF7F, #95DDA5); box-shadow: 0 8px 20px rgba(107, 207, 127, 0.3); }
+        .feature-card .icon-box svg { width: 28px; height: 28px; stroke: white; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+        .feature-card h3 { font-size: 18px; margin-bottom: 10px; }
+        .feature-card p { color: var(--text-soft); font-size: 13.5px; line-height: 1.75; }
 
-        .feature-icon {
-            font-size: 40px;
-            margin-bottom: 24px;
-            display: block;
-        }
-
-        .feature-card h3 {
-            font-size: 24px;
-            margin-bottom: 16px;
-        }
-
-        .feature-card p {
-            color: var(--text-gray);
-        }
-
-        /* --- Steps --- */
         .steps {
-            padding: 100px 0;
-            background-color: #f2f2f7;
+            padding: 90px 0 100px;
+            background: linear-gradient(180deg, white 0%, var(--blue-light) 100%);
         }
-
         .step-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-around;
-            gap: 30px;
+            display: grid; gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            margin-top: 24px;
         }
-
         .step-item {
-            flex: 1;
-            min-width: 250px;
+            background: white;
+            border-radius: 22px;
+            padding: 36px 22px 28px;
             text-align: center;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+            position: relative;
+            transition: transform .25s, box-shadow .25s;
         }
-
-        .step-number {
-            width: 60px;
-            height: 60px;
-            background: var(--primary-blue);
-            color: white;
+        .step-item:hover { transform: translateY(-4px); box-shadow: 0 16px 36px rgba(0, 0, 0, 0.08); }
+        .step-num {
+            position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
+            width: 40px; height: 40px;
+            background: var(--orange); color: white;
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            font-weight: 900; font-size: 16px;
+            box-shadow: 0 6px 14px rgba(255, 140, 66, 0.4);
+        }
+        .step-icon-wrap {
+            width: 84px; height: 84px;
+            margin: 14px auto 18px;
             border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 24px;
-            font-weight: 800;
-            margin: 0 auto 24px;
+            background: linear-gradient(135deg, #FF8C42, #FFB266);
+            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 10px 24px rgba(255, 140, 66, 0.32);
         }
+        .step-icon-wrap svg { width: 38px; height: 38px; stroke: white; fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+        .step-item:nth-child(2) .step-icon-wrap { background: linear-gradient(135deg, #5BAFEF, #8DCEFF); box-shadow: 0 10px 24px rgba(91, 175, 239, 0.32); }
+        .step-item:nth-child(2) .step-num { background: var(--blue); box-shadow: 0 6px 14px rgba(91, 175, 239, 0.4); }
+        .step-item:nth-child(3) .step-icon-wrap { background: linear-gradient(135deg, #FFD93D, #FFE166); box-shadow: 0 10px 24px rgba(255, 217, 61, 0.4); }
+        .step-item:nth-child(3) .step-icon-wrap svg { stroke: #8B6914; }
+        .step-item:nth-child(3) .step-num { background: var(--yellow); color: var(--text); box-shadow: 0 6px 14px rgba(255, 217, 61, 0.5); }
+        .step-item h3 { font-size: 20px; margin-bottom: 8px; }
+        .step-item p { color: var(--text-soft); font-size: 13.5px; line-height: 1.75; }
 
-        /* --- Footer --- */
-        footer {
-            padding: 80px 0 40px;
+        .final-cta {
+            padding: 80px 0;
             text-align: center;
-            background-color: white;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            background: linear-gradient(135deg, #FF8C42 0%, #FF6B8B 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
         }
-
-        .footer-links {
-            margin-bottom: 30px;
-            display: flex;
-            justify-content: center;
-            gap: 20px;
+        .final-cta::before, .final-cta::after {
+            content: ''; position: absolute; border-radius: 50%;
+            background: rgba(255, 255, 255, 0.12);
         }
-
-        .footer-links a {
-            color: var(--text-gray);
-            text-decoration: none;
-            font-size: 14px;
+        .final-cta::before { width: 220px; height: 220px; top: -60px; left: -50px; }
+        .final-cta::after { width: 280px; height: 280px; bottom: -90px; right: -70px; }
+        .final-cta-inner { position: relative; z-index: 1; }
+        .final-cta h2 { font-size: clamp(24px, 4vw, 34px); margin-bottom: 14px; color: white; }
+        .final-cta p { margin-bottom: 32px; opacity: 0.96; font-size: 15px; }
+        .final-cta .btn-primary {
+            background: white; color: var(--orange-deep) !important;
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.18);
         }
+        .final-cta .btn-primary:hover { box-shadow: 0 18px 40px rgba(0, 0, 0, 0.25); }
 
-        .footer-links a:hover {
-            color: var(--primary-blue);
-        }
-
-        .copy {
-            font-size: 13px;
-            color: var(--text-gray);
-        }
-
-        /* Animations */
-        @keyframes fadeUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
+        footer { padding: 50px 0 30px; background: white; text-align: center; }
+        .footer-logo { display: inline-flex; align-items: center; gap: 8px; margin-bottom: 18px; font-weight: 900; color: var(--text); font-size: 16px; }
+        .footer-logo img { width: 28px; height: 28px; border-radius: 7px; }
+        .footer-links { display: flex; justify-content: center; gap: 24px; margin-bottom: 22px; flex-wrap: wrap; }
+        .footer-links a { color: var(--text-soft); text-decoration: none; font-size: 13px; }
+        .footer-links a:hover { color: var(--orange); }
+        .copy { font-size: 12px; color: var(--text-soft); }
 
         .animate {
-            animation: fadeUp 0.8s ease forwards;
+            opacity: 0;
+            transform: translateY(24px);
+            transition: opacity .8s cubic-bezier(.2, .8, .2, 1), transform .8s cubic-bezier(.2, .8, .2, 1);
+        }
+        .animate.in {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 40px;
-            }
-
-            .feature-grid {
-                grid-template-columns: 1fr;
-            }
+            .hero { padding: 110px 0 60px; }
+            .nav-right { gap: 8px; }
+            .nav-right .lang-link { display: none; }
+            .header-cta { padding: 8px 14px; font-size: 12px; }
+            .float-emoji { font-size: 28px; }
         }
     </style>
+
+    <!-- Microsoft Clarity -->
+    <script type="text/javascript">
+        (function (c, l, a, r, i, t, y) {
+            c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+            t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+            y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "wop9hfmkqp");
+    </script>
 </head>
 
 <body>
-
     <header>
-        <div class="container" style="display: flex; justify-content: space-between; width: 100%; align-items: center;">
-            <div class="logo">
+        <div class="container header-inner">
+            <a href="/" class="logo">
+                <img src="../assets/logo-256.png" alt="Coupocke">
                 <span>Coupocke</span>
-            </div>
-                        <div style="display: flex; gap: 15px; align-items: center;">
-                <a href="../index.html"
-                    style="font-size: 14px; color: var(--text-gray); text-decoration: none;">日本語</a>
-                <a href="../en/index.html"
-                    style="font-size: 14px; color: var(--text-gray); text-decoration: none;">English</a>
-                <a href="../tw/index.html"
-                    style="font-size: 14px; color: var(--text-gray); text-decoration: none;">繁體中文</a>
-                <a href="https://apps.apple.com/us/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666"
-                    class="cta-button" style="padding: 10px 20px; font-size: 14px;">ดาวน์โหลดฟรี</a>
-            </div>
+            </a>
+            <nav class="nav-right">
+                <a href="../" class="lang-link">日本語</a>
+                <a href="../en/index.html" class="lang-link">EN</a>
+                <a href="../tw/index.html" class="lang-link">繁中</a>
+                <a href="https://apps.apple.com/jp/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666" class="header-cta">ดาวน์โหลดฟรี</a>
+            </nav>
         </div>
     </header>
 
     <section class="hero">
-        <div class="container animate">
-            <h1>ไม่ลืมใช้คูปองอีกต่อไป</h1>
-            <p>การแจ้งเตือนอัจฉริยะจะแจ้งคุณโดยอัตโนมัติเมื่อคุณอยู่ใกล้ร้านค้า<br>การจัดการคูปองยุคใหม่ที่ขับเคลื่อนด้วย
-                AI และบริการระบุตำแหน่ง</p>
-            <a href="https://apps.apple.com/us/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666"
-                class="cta-button">ดาวน์โหลดบน App Store</a>
-
-            <div class="hero-mockup">
-                <img src="https://images.unsplash.com/photo-1512428559083-a400a42d4a3a?auto=format&fit=crop&w=1200&q=80"
-                    alt="App interface visualization">
+        <span class="blob b1"></span>
+        <span class="blob b2"></span>
+        <span class="blob b3"></span>
+        <div class="container hero-inner">
+            <div class="hero-badge animate"><span class="dot"></span>ดาวน์โหลดฟรีบน App Store</div>
+            <h1 class="animate">"อ้าว ลืมใช้คูปองอีกแล้ว"<br><span class="highlight">เป็นศูนย์ตั้งแต่วันนี้</span></h1>
+            <p class="lead animate">คูปองที่นอนอยู่ในกระเป๋าและภาพหน้าจอที่หลงลืม<br>ให้ AI กับบริการระบุตำแหน่งช่วยเตือนคุณในจังหวะที่ใช่</p>
+            <div class="animate">
+                <a href="https://apps.apple.com/jp/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666" class="btn-primary">
+                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                    ดาวน์โหลดฟรีเลย
+                </a>
+                <div class="hero-meta">
+                    <span class="stars">★★★★★</span>
+                    <span>เฉพาะ iPhone · ไม่ต้องสมัคร · ฟรี 100%</span>
+                </div>
+            </div>
+            <div class="hero-mockup-wrap animate">
+                <div class="float-bubble f1" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v9M14.5 9.5h-3.5a1.5 1.5 0 100 3h2a1.5 1.5 0 110 3H9.5"/></svg>
+                </div>
+                <div class="float-bubble f2" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M3 8.5a2 2 0 012-2h14a2 2 0 012 2V11a2 2 0 100 4v2.5a2 2 0 01-2 2H5a2 2 0 01-2-2V15a2 2 0 100-4V8.5z"/><path d="M14 7v2M14 11.5v1M14 15v2"/></svg>
+                </div>
+                <div class="float-bubble f3" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M5 9h14l-1.5 10a2 2 0 01-2 1.7H8.5a2 2 0 01-2-1.7L5 9z"/><path d="M8.5 9V6a3.5 3.5 0 117 0v3"/></svg>
+                </div>
+                <div class="float-bubble f4" aria-hidden="true">
+                    <svg viewBox="0 0 24 24"><path d="M18 16v-5a6 6 0 10-12 0v5l-2 2h16l-2-2z"/><path d="M10 20a2 2 0 004 0"/></svg>
+                </div>
+                <img class="hero-screenshot" src="../assets/screenshots/hero-th.png" alt="รายการคูปอง Coupocke">
             </div>
         </div>
     </section>
@@ -317,32 +366,34 @@
     <section class="features">
         <div class="container">
             <div class="section-title animate">
-                <h2>เปลี่ยน "ลืมใช้" ให้เป็นการประหยัดที่ชาญฉลาด</h2>
-                <p>คูปองที่หลับใหลในกระเป๋าเงินของคุณ ภาพถ่ายหน้าจอที่ถูกลืม Coupocke
-                    จะเปลี่ยนสิ่งเหล่านี้ให้เป็นทรัพย์สินที่ใช้งานได้จริง
-                </p>
+                <span class="label">FEATURES</span>
+                <h2>ทำให้คูปองที่มี ได้ใช้จริง ๆ</h2>
+                <p>3 จุดเด่นที่ทุ่มใจ เพื่อการช้อปทุกวันของคุณ</p>
             </div>
 
             <div class="feature-grid">
-                <div class="feature-card animate" style="animation-delay: 0.1s;">
-                    <span class="feature-icon">📡</span>
-                    <h3>การแจ้งเตือนเมื่ออยู่ใกล้ร้าน</h3>
-                    <p>ระบบแจ้งเตือนอัจฉริยะจะตรวจหาโดยอัตโนมัติเมื่อคุณอยู่ใกล้ร้านค้าที่ลงทะเบียนไว้
-                        รับการแจ้งเตือนทันทีก่อนเดินเข้าร้าน ไม่มีทางลืมแน่นอน</p>
+                <div class="feature-card c1 animate">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="2"/><path d="M5.6 12a6.4 6.4 0 0 1 12.8 0"/><path d="M2.4 12a9.6 9.6 0 0 1 19.2 0"/></svg>
+                    </div>
+                    <h3>เข้าใกล้ก็เตือน</h3>
+                    <p>เดินผ่านร้านที่บันทึกไว้ แอปจะแจ้งเตือนทันที ไม่มีคำว่า "อ้าว!" ที่หน้าเคาน์เตอร์อีกต่อไป</p>
                 </div>
 
-                <div class="feature-card animate" style="animation-delay: 0.2s;">
-                    <span class="feature-icon">🤖</span>
-                    <h3>ถ่ายรูปและกรอกข้อมูลอัตโนมัติด้วย AI</h3>
-                    <p>AI (Google Gemini) จะวิเคราะห์ภาพถ่ายของคุณ อ่านชื่อร้าน วันหมดอายุ และส่วนลดได้ทันที
-                        การลงทะเบียนใช้เวลาเพียงไม่กี่วินาที</p>
+                <div class="feature-card c2 animate">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="6.5" width="18" height="13.5" rx="2.5"/><circle cx="12" cy="13.2" r="3.8"/><path d="M9 6.5l1.4-2h3.2L15 6.5"/></svg>
+                    </div>
+                    <h3>แค่ถ่ายก็ลงข้อมูล</h3>
+                    <p>AI อ่านชื่อร้าน วันหมดอายุ ส่วนลด ภายในไม่กี่วินาที ภาพเดียวจบ</p>
                 </div>
 
-                <div class="feature-card animate" style="animation-delay: 0.3s;">
-                    <span class="feature-icon">🛡️</span>
-                    <h3>การป้องกันการหมดอายุ</h3>
-                    <p>Coupocke ช่วยดูแลคุณก่อนที่คูปองจะหมดอายุ รับการแจ้งเตือนล่วงหน้าไม่กี่วันหรือในวันที่หมดอายุ
-                        ไม่พลาดดีลดีๆ อีกต่อไป</p>
+                <div class="feature-card c3 animate">
+                    <div class="icon-box">
+                        <svg viewBox="0 0 24 24"><path d="M12 2.5L4 6v6c0 5 3.4 9 8 10 4.6-1 8-5 8-10V6l-8-3.5z"/><path d="M9.5 12.5l2 2 3.5-4"/></svg>
+                    </div>
+                    <h3>ป้องกันคูปองหมดอายุ</h3>
+                    <p>เตือนก่อนหมดอายุล่วงหน้า ส่วนลดจะไม่หล่นหายไปอีก</p>
                 </div>
             </div>
         </div>
@@ -351,67 +402,83 @@
     <section class="steps">
         <div class="container">
             <div class="section-title animate">
-                <h2>ใช้งานง่ายอย่างน่าทึ่ง</h2>
+                <span class="label warm">HOW IT WORKS</span>
+                <h2>แค่ 3 ขั้นตอน</h2>
             </div>
 
             <div class="step-list">
-                <div class="step-item animate" style="animation-delay: 0.1s;">
-                    <div class="step-number">1</div>
-                    <h3>ถ่ายรูป</h3>
-                    <p>เพียงถ่ายรูปคูปองของคุณ<br>AI จะกรอกข้อมูลให้โดยอัตโนมัติ</p>
+                <div class="step-item animate">
+                    <div class="step-num">1</div>
+                    <div class="step-icon-wrap">
+                        <svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2.5"/><circle cx="12" cy="13.5" r="4"/><path d="M9 7l1.5-2.5h3L15 7"/><circle cx="17.5" cy="10.5" r="0.4" fill="white"/></svg>
+                    </div>
+                    <h3>ถ่าย</h3>
+                    <p>ถ่ายรูปคูปอง<br>ที่เหลือให้แอปจัดการ</p>
                 </div>
-                <div class="step-item animate" style="animation-delay: 0.2s;">
-                    <div class="step-number">2</div>
-                    <h3>เดินเที่ยว</h3>
-                    <p>ออกไปช้อปปิ้งตามปกติ<br>คุณสามารถปิดแอพได้เลย</p>
+                <div class="step-item animate">
+                    <div class="step-num">2</div>
+                    <div class="step-icon-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M9 22l-1-7-2-3 2-2 1 1 1-1 4-1.5"/><path d="M14 22l1-9 4-1"/><circle cx="11" cy="4.5" r="2"/><path d="M5 11l3-2"/></svg>
+                    </div>
+                    <h3>เดิน</h3>
+                    <p>ไปช้อปปิ้งตามปกติ<br>ปิดแอปได้เลย</p>
                 </div>
-                <div class="step-item animate" style="animation-delay: 0.3s;">
-                    <div class="step-number">3</div>
-                    <h3>ประหยัด</h3>
-                    <p>รับการแจ้งเตือนเมื่ออยู่ใกล้ร้าน<br>แสดงคูปองที่หน้าเคาน์เตอร์และรับส่วนลด!</p>
+                <div class="step-item animate">
+                    <div class="step-num">3</div>
+                    <div class="step-icon-wrap">
+                        <svg viewBox="0 0 24 24"><path d="M3 9a2 2 0 012-2h14a2 2 0 012 2v2.5a1.5 1.5 0 100 3V17a2 2 0 01-2 2H5a2 2 0 01-2-2v-2.5a1.5 1.5 0 100-3V9z"/><path d="M14 7.5v2M14 11.5v1M14 14.5v2"/></svg>
+                    </div>
+                    <h3>ใช้</h3>
+                    <p>เข้าใกล้ร้านจะมีแจ้งเตือน<br>แค่โชว์ที่เคาน์เตอร์</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="hero" style="padding: 100px 0; background: white;">
-        <div class="container animate">
-            <h2>การประหยัดอยู่ในกระเป๋าคุณแล้ว</h2>
-            <p>ไม่ต้องเสียใจที่หน้าแคชเชียร์อีกต่อไป<br>เริ่มต้นประสบการณ์ช้อปปิ้งที่ชาญฉลาดได้ตั้งแต่วันนี้</p>
-            <a href="https://apps.apple.com/us/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666"
-                class="cta-button">ดาวน์โหลดฟรีตอนนี้</a>
+    <section class="final-cta">
+        <div class="container final-cta-inner animate">
+            <h2>ส่วนลดของคุณ<br>อยู่ในกระเป๋าของคุณเสมอ</h2>
+            <p>ไม่ต้องเสียดายที่หน้าเคาน์เตอร์อีกต่อไป</p>
+            <a href="https://apps.apple.com/jp/app/%E3%82%AF%E3%83%BC%E3%83%9D%E3%83%83%E3%82%B1/id6759195666" class="btn-primary">
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.05 20.28c-.98.95-2.05.8-3.08.35-1.09-.46-2.09-.48-3.24 0-1.44.62-2.2.44-3.06-.35C2.79 15.25 3.51 7.59 9.05 7.31c1.35.07 2.29.74 3.08.8 1.18-.24 2.31-.93 3.57-.84 1.51.12 2.65.72 3.4 1.8-3.12 1.87-2.38 5.98.48 7.13-.57 1.5-1.31 2.99-2.54 4.09l.01-.01zM12.03 7.25c-.15-2.23 1.66-4.07 3.74-4.25.29 2.58-2.34 4.5-3.74 4.25z"/></svg>
+                ดาวน์โหลดฟรีเลย
+            </a>
         </div>
     </section>
 
     <footer>
         <div class="container">
+            <div class="footer-logo">
+                <img src="../assets/logo-256.png" alt="">
+                <span>Coupocke</span>
+            </div>
             <div class="footer-links">
-                <a href="terms.html">ข้อกำหนดการใช้งาน</a>
+                <a href="terms.html">เงื่อนไขการใช้งาน</a>
                 <a href="privacy.html">นโยบายความเป็นส่วนตัว</a>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHvAplyKIE3g7wVVItVoWDLAQQEjYJLOumq6FFCWIv70No7A/viewform?usp=header"
-                    target="_blank">ฝ่ายสนับสนุนและคำติชม</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdHvAplyKIE3g7wVVItVoWDLAQQEjYJLOumq6FFCWIv70No7A/viewform?usp=header" target="_blank" rel="noopener">ฝ่ายสนับสนุน</a>
             </div>
             <p class="copy">&copy; 2026 Coupocke. All rights reserved.</p>
         </div>
     </footer>
 
     <script>
-        // Simple intersection observer for fade-in animations
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    entry.target.style.opacity = 1;
-                    entry.target.classList.add('animate');
+                    entry.target.classList.add('in');
+                    observer.unobserve(entry.target);
                 }
             });
-        }, { threshold: 0.1 });
-
+        }, { threshold: 0, rootMargin: '0px 0px -40px 0px' });
         document.querySelectorAll('.animate').forEach(el => {
-            el.style.opacity = 0;
-            observer.observe(el);
+            const rect = el.getBoundingClientRect();
+            if (rect.top < window.innerHeight) {
+                requestAnimationFrame(() => el.classList.add('in'));
+            } else {
+                observer.observe(el);
+            }
         });
     </script>
-
 </body>
 
 </html>
